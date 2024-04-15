@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Code+Pro:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    background-color: rgb(163, 163, 163);
+    position: absolute;
+    /* width:350px; */
+    font-family: 'Open Sans', sans-serif;
+    height: 150vh;
+    transition: transform 0.3s ease-in;
+}
+
+.sidebar nav {
+    padding: 45px;
+}
+
+.sidebar nav li {
+    list-style: none;
+    font-size: 30px;
+    padding: 20px 0;
+
+}
+
+.sidebar nav li a {
+    text-decoration: none;
+    color: black;
+}
+
+.main {
+    /* background-color: yellow; */
+    width: 90vw;
+}
+
+.container {
+    display: flex;
+}
+
+.infocontainer {
+    /* background-color: red; */
+    width: 80vw;
+    height: 68vh;
+    margin: 144px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.devinfo {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Source Code Pro', monospace;
+    padding-left: 30px;
+}
+
+.devpic img {
+    height: 40vh;
+}
+
+.hello {
+    font-size: 3em;
+}
+
+.name {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.about {
+    font-size: 3em;
+}
+
+.moreabout {
+    font-size: 2em;
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+
+}
+
+.btn {
+    padding: 7px 12px;
+    border-radius: 24px;
+    color: white;
+    font-size: 13px;
+    background-color: darkgrey;
+    font-weight: bold;
+    margin: 20px 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: darkgray;
+    background-color: white;
+}
+
+.btn-sm {
+    font-size: 13px;
+}
+
+.contactform {
+    /* padding-left: 20px; */
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 80px;
+}
+
+h1 {
+    font-family: 'Source Code Pro', monospace;
+    padding: 12px 0;
+    margin: 20px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contactform form div {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactform form div input {
+    /* width: 26vw; */
+    border-radius: 5px;
+    margin: 6px 0 0 0;
+    padding: 3px;
+}
+.contactform form {
+   /* margin: 0 10px; */
+}
+#emailHelp {
+    font-size: 13px;
+    color: red;
+    margin: 0 5px;
+    padding: 3px 0 0 0;
+}
+
+#form-check {
+    flex-direction: row;
+}
+
+#form-check input {
+    width: 24px;
+    margin: 3px 0;
+}
+.intro{
+    margin: 30px 80px;
+}
+.intro h2 {
+    font-family: 'Open Sans', sans-serif;
+    margin: 12px;
+}
+
+.intro p {
+    font-family: 'Source Code Pro', monospace;
+    margin: 12px;
+}
+
+.skillcontainer {
+    padding: 12px;
+
+}
+
+/* .skillitem{
+    display: flex;
+    align-items: center;
+} */
+.sidebargo {
+    transform: translate(-355px, 0px);
+    position: absolute;
+}
+
+.skill {
+    margin: 20px 0;
+    width: 270px;
+    height: 10px;
+    background-color: mediumpurple;
+}
+
+.hamburger {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+}
+
+.cross {
+    margin-left: 180px;
+    margin-top: 9px;
+}
+
+@media(max-width:1330px) {
+    * 
+        /* background-color: red; */
+    
+.devpic{
+    display: none;
+    border-radius: 50%;
+}
+.devinfo{
+    font-size: 10px;
+}
+
+    /* .sidebar{
+        transform: translate(-355px,0px);
+        position: absolute;
+    } */
+
+}
