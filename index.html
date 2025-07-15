@@ -1,50 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Sarthak Atlasia </title>
+    <title>Sarthak Atlasia - Personal Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; /* Slate-100 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* Slate-400 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* Slate-500 */
+        }
+        /* Simple keyframe animations for hero section elements */
+        @keyframes fadeInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInFromBottom 0.6s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
 </head>
-
-<body>
-    <div class="container">
-        <div class="sidebar sidebargo" >
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="intro.html">Skills</a></li>
-                    <li><a href="services.html">About</a></li>
-                    <li><a href="contact.html">Contact Me</a></li>
-                    
-                </ul>
-            </nav>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 fixed w-full z-10 rounded-b-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-indigo-600 rounded-md p-2 hover:bg-indigo-50 transition duration-300">Sarthak Atlasia</a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#hero" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Home</a></li>
+                <li><a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">About</a></li>
+                <li><a href="#skills" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Skills</a></li>
+                <li><a href="#experience" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Experience</a></li>
+                <li><a href="#projects" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Projects</a></li>
+                <li><a href="#education" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Education</a></li>
+                <li><a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-indigo-50">Contact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-20 flex flex-col items-center justify-center space-y-6">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-gray-700 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#hero" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Home</a>
+            <a href="#about" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">About</a>
+            <a href="#skills" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Skills</a>
+            <a href="#experience" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Experience</a>
+            <a href="#projects" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Projects</a>
+            <a href="#education" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Education</a>
+            <a href="#contact" class="text-3xl text-gray-800 hover:text-indigo-600 font-medium transition duration-300" onclick="closeMobileMenu()">Contact</a>
         </div>
-        <div class="main">
-            <div class="hamburger">
-                <img class="ham" src="images/hamburger.png" alt="" width="30">
-                <img class="cross" src="images/cross.png" alt="" width="30">
-            </div>
-            <div class="infocontainer">
-                <div class="devinfo">
-                    <div class="hello">Hi I am</div>
-                    <div class="name">Sarthak Atlasia</div>
-                    <div class="about">Software Enginner At Amdocs </div>
-                    <div class="about">Graduated from SGSITS,2024 in Electronics & Telecomm.</div>
-                    <div class="moreabout">I am a Developer and a Coder, <br> Passionate about learning new technologies.</div>
-                    <div class="buttons">
-                        <a href="Sarthak_Resume (3).pdf" target="blank">
-                        <button class="btn">Download CV</button></a>
-                        <a href="contact.html"><button class="btn">Contact me</button></a>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 md:py-32 flex items-center justify-center min-h-[calc(100vh-80px)] rounded-b-xl shadow-lg">
+            <div class="container mx-auto text-center px-6">
+                <div class="flex flex-col items-center justify-center">
+                    <!-- Removed the photo div as requested -->
+                    <div>
+                        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-up">Hi, I'm Sarthak Atlasia</h1>
+                        <p class="text-xl md:text-2xl mb-8 animate-fade-in-up delay-100">A passionate SDET & Full Stack Developer creating amazing things.</p>
+                        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up delay-200">
+                            <a href="#projects" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-100 transition duration-300 transform hover:scale-105">View My Work</a>
+                            <!-- Link to resume PDF - ensure this path is correct if you host it -->
+                            <a href="Sarthak_Resume (3).pdf" download class="inline-block bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-indigo-600 transition duration-300 transform hover:scale-105">Download Resume</a>
+                        </div>
+                        <div class="flex justify-center space-x-6 mt-8 animate-fade-in-up delay-300">
+                            <a href="https://linkedin.com/in/sarthak-atlasia" target="_blank" class="text-white hover:text-indigo-100 transition duration-300 text-3xl">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/Sarthak" target="_blank" class="text-white hover:text-indigo-100 transition duration-300 text-3xl">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <!-- Add Twitter if Sarthak has one, otherwise remove -->
+                            <!-- <a href="https://twitter.com/yourprofile" target="_blank" class="text-white hover:text-indigo-100 transition duration-300 text-3xl">
+                                <i class="fab fa-twitter"></i>
+                            </a> -->
+                        </div>
                     </div>
                 </div>
-                <div class="devpic"><img src="images/dev.pg.png" alt="Sarthak"></div>
             </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+        </section>
 
+        <!-- About Me Section -->
+        <section id="about" class="py-16 md:py-24 bg-white rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">About Me</h2>
+                <div class="prose max-w-none text-gray-700 leading-relaxed text-lg">
+                    <p class="mb-4">Hello! I'm Sarthak Atlasia, an SDET and Full Stack Developer passionate about building robust and user-friendly applications. With a strong foundation in both software development and quality assurance, I ensure seamless integration and optimal performance across various systems.</p>
+                    <p class="mb-4">My experience includes developing and validating critical backend flows, executing comprehensive performance testing, and streamlining CI/CD pipelines. I thrive in agile environments, leveraging tools like Jira, Kubernetes, and Apache Kafka to deliver high-quality solutions.</p>
+                    <p class="mb-4">I am a continuous learner, always eager to explore new technologies and methodologies to enhance my skills and contribute effectively to innovative projects. My goal is to create impactful digital experiences that are both efficient and reliable.</p>
+                    <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to discuss a project or just say hello!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 md:py-24 bg-gray-50 rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">My Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill Card 1: Languages -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-code mr-2 text-indigo-500"></i>Languages</h3>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li>C++, C</li>
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>HTML/CSS</li>
+                            <li>JavaScript</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Card 2: Technologies/Frameworks -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-laptop-code mr-2 text-indigo-500"></i>Technologies/Frameworks</h3>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li>React.js</li>
+                            <li>Tailwind CSS</li>
+                            <li>Linux, UNIX</li>
+                            <li>AWS</li>
+                            <li>MS Excel</li>
+                            <li>MySQL</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Card 3: Developer Tools -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-tools mr-2 text-indigo-500"></i>Developer Tools</h3>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li>VS Code</li>
+                            <li>Git, GitHub</li>
+                            <li>JIRA</li>
+                            <li>Google Cloud Platform</li>
+                            <li>Android Studio</li>
+                            <li>Apache Kafka</li>
+                            <li>Kibana, Dynatrace, Grafana</li>
+                            <li>Camunda</li>
+                        </ul>
+                    </div>
+                    <!-- Skill Card 4: Relevant Coursework -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-book-open mr-2 text-indigo-500"></i>Relevant Coursework</h3>
+                        <ul class="list-disc list-inside text-gray-600">
+                            <li>Data Structures & Algorithms</li>
+                            <li>Object Oriented Programming</li>
+                            <li>Database Management</li>
+                            <li>Computer Networks</li>
+                            <li>Operating Systems</li>
+                            <li>Generative AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-16 md:py-24 bg-white rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Experience</h2>
+                <div class="space-y-8">
+                    <!-- Experience 1: Amdocs -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">SDET - Amdocs Development Center India LLP</h3>
+                        <p class="text-gray-600 mb-4">June 2024 - Present | Gurugram, Haryana</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Developed, tested, and validated the Bill Estimate Flow for T-Mobile US, ensuring accurate, real-time billing estimates by integrating multiple backend steps. Verified business logic and streamlined API interactions, improving support workflows and reducing customer service delays.</li>
+                            <li>Executed comprehensive performance testing using LoadRunner Enterprise (LRE) and Tuxedo CSM tools to analyze system behavior under load, for samson to D1 sync improving service-level responsiveness by implementing optimization techniques.</li>
+                            <li>Streamlined CI/CD pipelines by integrating test frameworks with Jenkins and Bitbucket. Automated test environment deployments using Kubernetes. Monitored system health with Dynatrace and Grafana. Adopted Agile practices using JIRA for task tracking and sprint planning. Validated message flows and performed CRUD operations in distributed systems using Apache Kafka.</li>
+                        </ul>
+                    </div>
+                    <!-- Experience 2: Oasis Infobyte -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Full Stack Developer Intern - Oasis Infobyte</h3>
+                        <p class="text-gray-600 mb-4">June 2023 - July 2023 | Indore, Madhya Pradesh</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Developed responsive website for Coffee Shop client using HTML5, CSS3, JavaScript, and modern UI/UX design principles to ensure seamless user experiences across all devices.</li>
+                            <li>Enhanced problem-solving skills by collaboratively developing full-stack solutions, directly contributing to successful project delivery.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-24 bg-white rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project Card 1: Personal Portfolio -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Personal+Portfolio" alt="Personal Portfolio Project" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-3">Personal Portfolio</h3>
+                            <p class="text-gray-600 mb-4">Developed a responsive personal portfolio website using React.js, Tailwind CSS, and HTML that showcases web development skills, featuring an interactive UI with About, Skills, and Contact sections powered by Form Spree API integration.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Tailwind CSS</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Form Spree API</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <!-- Assuming your current portfolio is the live demo -->
+                                <a href="https://sarthak2443.github.io/Personal_Portfolio/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-1"></i>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Sarthak/Personal_Portfolio" target="_blank" class="text-gray-600 hover:text-gray-800 font-medium flex items-center transition duration-300">
+                                    <i class="fab fa-github mr-1"></i>
+                                    GitHub Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2: TinDog -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=TinDog" alt="TinDog Project" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-3">TinDog</h3>
+                            <p class="text-gray-600 mb-4">Engineered a responsive landing page for a fictional dog-owner matching application using front-end technologies, implementing interactive UI components that showcase app features, pricing tiers, download options, and contact functionality.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">CSS</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Responsive Design</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <!-- Placeholder for Live Demo if available -->
+                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-1"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 font-medium flex items-center transition duration-300">
+                                    <i class="fab fa-github mr-1"></i>
+                                    GitHub Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3: Payment Gateway Integration -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Payment+Gateway" alt="Payment Gateway Integration Project" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-3">Payment Gateway Integration</h3>
+                            <p class="text-gray-600 mb-4">Implemented a cross-platform donation website with secure payment processing functionality by integrating the Razor Pay API, ensuring seamless transactions across multiple devices while maintaining security protocols.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">CSS</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Razor Pay API</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <!-- Placeholder for Live Demo if available -->
+                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
+                                    <i class="fas fa-external-link-alt mr-1"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 font-medium flex items-center transition duration-300">
+                                    <i class="fab fa-github mr-1"></i>
+                                    GitHub Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-16 md:py-24 bg-gray-50 rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Education</h2>
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Bachelor of Technology in Electronics and Telecommunications</h3>
+                        <p class="text-gray-600 mb-2">SGSITS, Indore</p>
+                        <p class="text-gray-600 mb-4">September 2020 - May 2024 | CGPA: 8.58</p>
+                    </div>
+                    <!-- Certificates Section -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">Certificates</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Full Stack Web Development Bootcamp - Udemy (UC-9a46c566-bfd9-48c3-9ae5-5bcd1c8bdb54) - August 2022</li>
+                            <li>Amazon ML Summer School - October 2023 (<a href="Certificate Link" target="_blank" class="text-indigo-600 hover:underline">Certificate Link</a>)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-50 rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Contact Me</h2>
+                <div class="max-w-xl mx-auto">
+                    <form action="https://formspree.io/f/yourformid" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" placeholder="you@example.com" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-lg font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" placeholder="Subject of your message" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" placeholder="Your message..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                    <div class="flex justify-center space-x-6 mt-12">
+                        <a href="https://linkedin.com/in/sarthak-atlasia" target="_blank" class="text-gray-600 hover:text-indigo-600 transition duration-300 text-4xl">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Sarthak" target="_blank" class="text-gray-600 hover:text-indigo-600 transition duration-300 text-4xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <!-- Add Twitter if Sarthak has one, otherwise remove -->
+                        <!-- <a href="https://twitter.com/yourprofile" target="_blank" class="text-gray-600 hover:text-indigo-600 transition duration-300 text-4xl">
+                            <i class="fab fa-twitter"></i>
+                        </a> -->
+                        <a href="mailto:sarthak.atlasia@gmail.com" class="text-gray-600 hover:text-indigo-600 transition duration-300 text-4xl">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+917898448482" class="text-gray-600 hover:text-indigo-600 transition duration-300 text-4xl">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 rounded-t-lg shadow-inner">
+        <div class="container mx-auto text-center px-6">
+            <p>&copy; 2025 Sarthak Atlasia. All rights reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">Designed with ❤️ by Sarthak Atlasia</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                if (document.getElementById('mobile-menu').classList.contains('flex')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        }
+
+        // Basic form submission (for demonstration, replace with actual backend logic)
+        // IMPORTANT: Replace "https://formspree.io/f/yourformid" with your actual Formspree endpoint
+        // You'll need to create a Formspree account and set up a new form to get your unique endpoint.
+        document.querySelector('#contact form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    submitButton.textContent = 'Message Sent!';
+                    submitButton.classList.add('bg-green-500', 'hover:bg-green-600');
+                    form.reset();
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(", "));
+                    } else {
+                        alert('Oops! There was a problem sending your message.');
+                    }
+                    submitButton.textContent = 'Try Again';
+                    submitButton.classList.add('bg-red-500', 'hover:bg-red-600');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Oops! An error occurred. Please try again later.');
+                submitButton.textContent = 'Try Again';
+                submitButton.classList.add('bg-red-500', 'hover:bg-red-600');
+            } finally {
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.classList.remove('bg-green-500', 'hover:bg-green-600', 'bg-red-500', 'hover:bg-red-600');
+                    submitButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                    submitButton.disabled = false;
+                }, 3000);
+            }
+        });
+    </script>
+</body>
 </html>
