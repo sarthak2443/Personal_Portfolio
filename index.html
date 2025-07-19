@@ -222,11 +222,12 @@
         <section id="projects" class="py-16 md:py-24 bg-white rounded-xl shadow-md mx-4 md:mx-auto max-w-5xl my-12 px-6">
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">My Projects</h2>
+                <!-- Adjusted grid for 4 projects: use md:grid-cols-2 and gap-y for vertical spacing -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Project Card 1: Personal Portfolio -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300 flex flex-col">
                         <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Personal+Portfolio" alt="Personal Portfolio Project" class="w-full h-56 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex-1 flex flex-col">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-3">Personal Portfolio</h3>
                             <p class="text-gray-600 mb-4">Developed a responsive personal portfolio website using React.js, Tailwind CSS, and HTML that showcases web development skills, featuring an interactive UI with About, Skills, and Contact sections powered by Form Spree API integration.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -235,7 +236,7 @@
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Form Spree API</span>
                             </div>
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 mt-auto">
                                 <!-- Assuming your current portfolio is the live demo -->
                                 <a href="https://sarthak2443.github.io/Personal_Portfolio/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
                                     <i class="fas fa-external-link-alt mr-1"></i>
@@ -249,9 +250,9 @@
                         </div>
                     </div>
                     <!-- Project Card 2: TinDog -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300 flex flex-col">
                         <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=TinDog" alt="TinDog Project" class="w-full h-56 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex-1 flex flex-col">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-3">TinDog</h3>
                             <p class="text-gray-600 mb-4">Engineered a responsive landing page for a fictional dog-owner matching application using front-end technologies, implementing interactive UI components that showcase app features, pricing tiers, download options, and contact functionality.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -260,7 +261,7 @@
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Responsive Design</span>
                             </div>
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 mt-auto">
                                 <!-- Placeholder for Live Demo if available -->
                                 <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
                                     <i class="fas fa-external-link-alt mr-1"></i>
@@ -274,9 +275,9 @@
                         </div>
                     </div>
                     <!-- Project Card 3: Payment Gateway Integration -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300 flex flex-col">
                         <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Payment+Gateway" alt="Payment Gateway Integration Project" class="w-full h-56 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex-1 flex flex-col">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-3">Payment Gateway Integration</h3>
                             <p class="text-gray-600 mb-4">Implemented a cross-platform donation website with secure payment processing functionality by integrating the Razor Pay API, ensuring seamless transactions across multiple devices while maintaining security protocols.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -285,7 +286,7 @@
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">Razor Pay API</span>
                             </div>
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 mt-auto">
                                 <!-- Placeholder for Live Demo if available -->
                                 <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
                                     <i class="fas fa-external-link-alt mr-1"></i>
@@ -297,21 +298,20 @@
                                 </a>
                             </div>
                         </div>
-                        
+                    </div>
                     <!-- Project Card 4: Weather App -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300">
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition duration-300 flex flex-col">
                         <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Weather+App" alt="Weather App Project" class="w-full h-56 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex-1 flex flex-col">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-3">Weather App</h3>
-                            <p class="Developed a dynamic Weather App using HTML, CSS, and JavaScript to display real-time weather data. Users can search any city and view temperature, humidity, wind speed, and weather conditions, powered by OpenWeatherMap API and responsive across devices.</p>
+                            <p class="text-gray-600 mb-4">Developed a dynamic Weather App using HTML, CSS, and JavaScript to display real-time weather data. Users can search any city and view temperature, humidity, wind speed, and weather conditions, powered by OpenWeatherMap API and responsive across devices.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">CSS</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
                                 <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full">OpenWeatherMap</span>
                             </div>
-                            <div class="flex space-x-4">
-                                <!-- Placeholder for Live Demo if available -->
+                            <div class="flex space-x-4 mt-auto">
                                 <a href="https://sarthak2443.github.io/weatherwise-app/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition duration-300">
                                     <i class="fas fa-external-link-alt mr-1"></i>
                                     Live Demo
