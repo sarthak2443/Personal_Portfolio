@@ -260,6 +260,14 @@
             transition: transform 0.35s ease, opacity 0.35s ease;
         }
 
+        #mobile-menu[hidden] {
+            display: none !important;
+        }
+
+        #mobile-menu:not([hidden]) {
+            display: flex;
+        }
+
         .site-header.is-hidden {
             transform: translate3d(0, calc(-100% - 2px), 0);
             opacity: 0;
@@ -589,7 +597,7 @@
             </button>
         </nav>
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 glass z-50 flex flex-col items-center justify-center space-y-6">
+        <div id="mobile-menu" hidden class="md:hidden fixed inset-0 glass flex-col items-center justify-center space-y-6">
             <button id="close-mobile-menu" class="absolute top-6 right-6 text-slate-300 hover:text-indigo-400 focus:outline-none p-2" aria-label="Close navigation menu">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -701,6 +709,7 @@
                         </h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg text-sm border border-indigo-500/30">Python</span>
+                            <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg text-sm border border-indigo-500/30">Go</span>
                             <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg text-sm border border-indigo-500/30">Core Java</span>
                             <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg text-sm border border-indigo-500/30">C++</span>
                             <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg text-sm border border-indigo-500/30">JavaScript</span>
@@ -716,6 +725,8 @@
                         </h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">Flask</span>
+                            <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">FastAPI</span>
+                            <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">Echo</span>
                             <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">Django</span>
                             <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">React</span>
                             <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1.5 rounded-lg text-sm border border-cyan-500/30">Node.js</span>
@@ -744,6 +755,8 @@
                         </h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">REST APIs</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">GraphQL</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">gRPC</span>
                             <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">Microservices</span>
                             <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">Apache Kafka</span>
                             <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-lg text-sm border border-emerald-500/30">CI/CD</span>
@@ -1437,7 +1450,7 @@
                 });
                 }
                 // Close mobile menu if open
-                if (document.getElementById('mobile-menu').classList.contains('flex')) {
+                if (!document.getElementById('mobile-menu').hidden) {
                     closeMobileMenu();
                 }
             });
@@ -1466,9 +1479,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
-            const isOpen = mobileMenu.classList.contains('flex');
+            const isOpen = mobileMenu.hidden;
+            mobileMenu.hidden = !isOpen;
             mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
             document.body.classList.toggle('overflow-hidden', isOpen);
         });
@@ -1478,8 +1490,7 @@
         });
 
         function closeMobileMenu() {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
+            mobileMenu.hidden = true;
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('overflow-hidden');
         }
@@ -1507,7 +1518,7 @@
         contactFormClose.addEventListener('click', () => setContactFormOpen(false));
 
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && mobileMenu.classList.contains('flex')) {
+            if (event.key === 'Escape' && !mobileMenu.hidden) {
                 closeMobileMenu();
                 mobileMenuButton.focus();
             }
