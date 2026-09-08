@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Sarthak Atlasia about software engineering opportunities, projects, and collaborations.">
     <link rel="stylesheet" href="styles.css">
-    <title>Sarthak Atlasia</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Contact | Sarthak Atlasia</title>
 </head>
 
 <body>
@@ -24,17 +26,16 @@
             </nav>
         </div>
         <div class="main">
-          <div class="hamburger">
-            <img class="ham" src="images/hamburger.png" alt="" width="30">
-            <img class="cross" src="images/cross.png" alt="" width="30">
+          <div class="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu">
+            <img class="ham" src="images/hamburger.png" alt="Open navigation menu" width="30">
+            <img class="cross" src="images/cross.png" alt="Close navigation menu" width="30">
         </div>
             <div class="contactform">
                 <h1>Contact for Work/Enquires</h1>
                 <form action="https://formspree.io/f/xaygnppj" method="POST">
-                <form>
                     <div class="mb-3">
                         <label for="clientname" class="form-label">Name</label>
-                        <input type="name" class="form-control" id="clientname" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="clientname" name="name" required>
                         
                       </div>
                     <div class="mb-3">
@@ -44,19 +45,20 @@
                     </div>
                     <div class="mb-3">
                       <label for="clientphone" class="form-label">Phone No.</label>
-                      <input type="phone" class="form-control" id="clientphone">
+                      <input type="tel" class="form-control" id="clientphone" name="phone">
                     </div>
                     <div class="mb-3">
-                        <label for="clientenquiry" class="form-label">Subject </label>
+                        <label for="subject" class="form-label">Subject </label>
                         <input type="text" class="form-control" id="subject" name="_subject">
-                        <label for="clientenquiry" class="form-label">Message </label>
-                        <textarea name="message"></textarea>
+                        <label for="message" class="form-label">Message </label>
+                        <textarea id="message" name="message" required></textarea>
                        </div>
                     <div class="mb-3" id="form-check">
                       <input type="checkbox" class="form-check-input" id="isclient">
                       <label class="form-check-label" for="isclient">Work on a project with me</label>
                     </div>
                     
+                    <p id="form-status" role="status" aria-live="polite"></p>
                     <button type="submit" class="btn btn-sm">Submit</button>
                   </form>
             </div>
