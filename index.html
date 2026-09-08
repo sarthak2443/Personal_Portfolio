@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarthak Atlasia - Portfolio</title>
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <meta name="description" content="Sarthak Atlasia is a software developer specializing in backend systems, REST APIs, automation, and scalable applications.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Sarthak Atlasia | Software Developer Portfolio">
+    <meta property="og:description" content="Backend-focused software engineer building reliable APIs, automation, and production systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarthak2443.github.io/Personal_Portfolio/">
+    <meta name="twitter:card" content="summary">
+    <title>Sarthak Atlasia | Software Developer Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Display font for headings, with monospace accents for technical labels. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -19,6 +25,119 @@
             color: #e2e8f0;
             position: relative;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body.booting {
+            overflow: hidden;
+        }
+
+        .boot-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            background: #05090d;
+            color: #dbeafe;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .boot-screen.is-complete {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .boot-screen::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, rgba(103, 232, 249, 0.035) 0 1px, transparent 1px 5px);
+            pointer-events: none;
+        }
+
+        .boot-terminal {
+            width: min(44rem, calc(100vw - 2rem));
+            padding: 1.25rem;
+            border: 1px solid rgba(103, 232, 249, 0.35);
+            background: rgba(14, 23, 31, 0.9);
+            box-shadow: 0 0 70px rgba(34, 211, 238, 0.12);
+            font: 0.85rem/1.8 'Source Code Pro', monospace;
+        }
+
+        .boot-chrome {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .boot-chrome span {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: #334155;
+        }
+
+        .boot-chrome span:first-child { background: #fb7185; }
+        .boot-chrome span:nth-child(2) { background: #facc15; }
+        .boot-chrome span:last-child { background: #86efac; }
+
+        .boot-line {
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: bootLineIn 0.35s ease forwards;
+        }
+
+        .boot-line:nth-child(2) { animation-delay: 0.25s; }
+        .boot-line:nth-child(3) { animation-delay: 0.65s; }
+        .boot-line:nth-child(4) { animation-delay: 1.05s; }
+        .boot-line:nth-child(5) { animation-delay: 1.45s; }
+        .boot-line:nth-child(6) { animation-delay: 1.85s; }
+
+        .boot-line .ok { color: #86efac; }
+        .boot-line .prompt { color: #67e8f9; }
+
+        @keyframes bootLineIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1, h2, h3, h4, .contact-title, .contact-title-gradient {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        img, svg, canvas {
+            max-width: 100%;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid #67e8f9;
+            outline-offset: 3px;
+        }
+
+        .form-status {
+            min-height: 1.5rem;
+        }
+
+        .project-art {
+            min-height: 12rem;
+        }
+
+        @media (max-width: 640px) {
+            #mobile-menu a {
+                font-size: 1.5rem;
+            }
+
+            section {
+                scroll-margin-top: 5rem;
+            }
         }
         
         /* Animated starry background */
@@ -104,17 +223,354 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
+
+        /* Engineering-console theme: restrained accents over the existing content. */
+        :root {
+            --console-bg: #080d12;
+            --console-panel: rgba(14, 23, 31, 0.92);
+            --console-border: rgba(103, 232, 249, 0.18);
+            --console-green: #86efac;
+            --console-cyan: #67e8f9;
+        }
+
+        body {
+            background: var(--console-bg);
+            background-image: linear-gradient(rgba(103, 232, 249, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 232, 249, 0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        #stars-canvas {
+            opacity: 0.12;
+        }
+
+        .glass {
+            background: var(--console-panel);
+            border: 1px solid var(--console-border);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(14px);
+        }
+
+        header.glass {
+            background: rgba(8, 13, 18, 0.9);
+            border-width: 0 0 1px;
+        }
+
+        .site-header {
+            display: block;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+        }
+
+        .site-header.is-hidden {
+            transform: translate3d(0, calc(-100% - 2px), 0);
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        main.pt-20 {
+            padding-top: 5rem;
+        }
+
+        header nav > ul > li {
+            animation: navItemIn 0.55s ease both;
+        }
+
+        header nav > ul > li:nth-child(1) { animation-delay: 0.05s; }
+        header nav > ul > li:nth-child(2) { animation-delay: 0.1s; }
+        header nav > ul > li:nth-child(3) { animation-delay: 0.15s; }
+        header nav > ul > li:nth-child(4) { animation-delay: 0.2s; }
+        header nav > ul > li:nth-child(5) { animation-delay: 0.25s; }
+        header nav > ul > li:nth-child(6) { animation-delay: 0.3s; }
+        header nav > ul > li:nth-child(7) { animation-delay: 0.35s; }
+        header nav > ul > li:nth-child(8) { animation-delay: 0.4s; }
+
+        @keyframes navItemIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header nav > ul > li > a {
+            position: relative;
+        }
+
+        header nav > ul > li > a::after {
+            content: "";
+            position: absolute;
+            left: 0.75rem;
+            right: 0.75rem;
+            bottom: 0.15rem;
+            height: 2px;
+            background: linear-gradient(90deg, var(--console-green), var(--console-cyan));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        header nav > ul > li > a:hover::after,
+        header nav > ul > li > a:focus-visible::after {
+            transform: scaleX(1);
+        }
+
+        header.glass::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 22%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--console-cyan), transparent);
+            animation: headerScan 5s ease-in-out infinite;
+        }
+
+        @keyframes headerScan {
+            0%, 100% { transform: translateX(0); opacity: 0.35; }
+            50% { transform: translateX(350%); opacity: 0.9; }
+        }
+
+        #about .prose {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            letter-spacing: 0.005em;
+        }
+
+        #about .prose p:first-child {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            line-height: 1.55;
+        }
+
+        section {
+            scroll-margin-top: 6rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section > .container > h2,
+        section > .container > h2 + div {
+            text-shadow: 0 0 24px rgba(103, 232, 249, 0.15);
+        }
+
+        section > .container > h2::before {
+            content: "> ";
+            color: var(--console-green);
+            font: 0.7em/1 'Source Code Pro', monospace;
+        }
+
+        .console-label {
+            font: 0.85rem/1.4 'Source Code Pro', monospace;
+            letter-spacing: 0.08em;
+        }
+
+        #hero .container {
+            max-width: 72rem;
+        }
+
+        #hero h1 {
+            letter-spacing: -0.045em;
+        }
+
+        #hero .console-label {
+            text-transform: lowercase;
+        }
+
+        .career-map {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+        }
+
+        .career-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .career-marker {
+            width: 0.65rem;
+            height: 0.65rem;
+            flex: 0 0 auto;
+            border: 2px solid var(--console-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(103, 232, 249, 0.55);
+        }
+
+        .career-step.previous .career-marker {
+            border-color: #60a5fa;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.35);
+        }
+
+        .career-connector {
+            width: 1px;
+            height: 0.75rem;
+            margin-left: 0.3rem;
+            background: linear-gradient(var(--console-cyan), #60a5fa);
+            opacity: 0.7;
+        }
+
+        .career-step.previous {
+            color: #94a3b8;
+        }
+
+        section > .container {
+            max-width: 64rem;
+        }
+
+        section > .container > h2 {
+            text-align: left;
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            letter-spacing: -0.03em;
+        }
+
+        section > .container > h2 + div {
+            margin-left: 0;
+        }
+
+        .glass {
+            border-radius: 0.75rem;
+        }
+
+        .cursor-blink {
+            animation: cursorBlink 1.1s steps(2, start) infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% { opacity: 0; }
+        }
+
+        .card-glow:hover {
+            border-color: rgba(134, 239, 172, 0.4);
+            box-shadow: 0 0 28px rgba(34, 211, 238, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .project-art {
+            background-image: linear-gradient(135deg, rgba(103, 232, 249, 0.08), transparent 60%), repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(134, 239, 172, 0.06) 24px);
+            border-bottom: 1px solid var(--console-border);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .contact-title-gradient {
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-email {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+            padding-bottom: 0.65rem;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-email:hover .contact-arrow {
+            transform: translateX(5px);
+            border-color: #f472b6;
+        }
+
+        .contact-arrow {
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .contact-form-toggle {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            z-index: 40;
+            background: rgba(8, 13, 18, 0.94);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .contact-form-panel {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 5.5rem;
+            z-index: 40;
+            width: min(28rem, calc(100vw - 2rem));
+            max-height: calc(100vh - 7rem);
+            overflow-y: auto;
+            margin: 0;
+        }
+
+        input, textarea {
+            border-color: var(--console-border) !important;
+        }
+
+        footer.glass {
+            border-width: 1px 0 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .scroll-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            header nav > ul > li,
+            header.glass::after {
+                animation: none;
+            }
+
+            .boot-screen {
+                display: none;
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased booting">
+    <div id="boot-screen" class="boot-screen" aria-label="Loading portfolio" role="status">
+        <div class="boot-terminal">
+            <div class="boot-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="boot-line"><span class="prompt">~/sarthak $</span> initialize portfolio</div>
+            <div class="boot-line"><span class="ok">[OK]</span> loading engineering profile</div>
+            <div class="boot-line"><span class="ok">[OK]</span> mounting projects and experience</div>
+            <div class="boot-line"><span class="ok">[OK]</span> starting responsive interface</div>
+            <div class="boot-line"><span class="prompt">~/sarthak $</span> ready<span class="cursor-blink">_</span></div>
+        </div>
+    </div>
     <!-- Animated stars background -->
     <canvas id="stars-canvas"></canvas>
     
     <div class="content-wrapper">
     <!-- Header Section -->
-    <header class="glass shadow-lg py-4 px-6 md:px-12 fixed w-full z-50">
+    <header class="site-header glass shadow-lg py-4 px-6 md:px-12 fixed w-full z-50">
         <nav class="container mx-auto flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-indigo-400 rounded-md p-2 hover:text-indigo-300 transition duration-300">Sarthak Atlasia</a>
+            <a href="#hero" class="text-xl font-bold text-cyan-300 rounded-md p-2 hover:text-cyan-200 transition duration-300 font-mono">~/sarthak</a>
             <ul class="hidden md:flex space-x-6">
                 <li><a href="#hero" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300 rounded-md px-3 py-2">Home</a></li>
                 <li><a href="#about" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300 rounded-md px-3 py-2">About</a></li>
@@ -126,7 +582,7 @@
                 <li><a href="#contact" class="text-slate-300 hover:text-indigo-400 font-medium transition duration-300 rounded-md px-3 py-2">Contact</a></li>
             </ul>
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-indigo-400 focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-indigo-400 focus:outline-none p-2" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -134,7 +590,7 @@
         </nav>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 glass z-50 flex flex-col items-center justify-center space-y-6">
-            <button id="close-mobile-menu" class="absolute top-6 right-6 text-slate-300 hover:text-indigo-400 focus:outline-none">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-slate-300 hover:text-indigo-400 focus:outline-none p-2" aria-label="Close navigation menu">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -156,24 +612,26 @@
             <div class="container mx-auto text-center px-6">
                 <div class="flex flex-col items-center justify-center">
                     <div>
-                        <div class="mb-6 animate-fade-in-up">
-                            <span class="inline-block bg-indigo-500/20 text-indigo-300 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-500/30">
-                                <i class="fas fa-code mr-2"></i>Software Dev Engineer
-                            </span>
-                        </div>
+                        <p class="console-label text-cyan-400 mb-4 animate-fade-in-up">~/sarthak $ whoami</p>
                         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up delay-100">
-                            Hi, I'm <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Sarthak Atlasia</span>
+                            Sarthak Atlasia<span class="cursor-blink text-cyan-400">_</span>
                         </h1>
-                        <div class="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-3 text-lg md:text-xl mb-6 text-slate-300 animate-fade-in-up delay-200">
-                            <p>Software Developer at <span class="text-cyan-400 font-semibold">Netweb Technologies</span></p>
-                            <span class="hidden lg:block text-slate-500">|</span>
-                            <p class="text-slate-400 text-base md:text-lg">Ex-Associate Software Engineer at <span class="text-cyan-400 opacity-80">Amdocs</span></p>
+                        <div class="career-map animate-fade-in-up delay-200" aria-label="Career path">
+                            <div class="career-step current">
+                                <span class="career-marker" aria-hidden="true"></span>
+                                <p>Software Developer · <span class="text-cyan-400 font-semibold">Netweb Technologies India Ltd.</span></p>
+                            </div>
+                            <span class="career-connector" aria-hidden="true"></span>
+                            <div class="career-step previous">
+                                <span class="career-marker" aria-hidden="true"></span>
+                                <p>Previously Associate Software Engineer · <span class="text-blue-400 font-semibold">Amdocs</span></p>
+                            </div>
                         </div>
                         <p class="text-base md:text-lg mb-10 text-slate-400 animate-fade-in-up delay-300 max-w-2xl mx-auto leading-relaxed">
                             Backend Developer working with <span class="text-white font-medium">Python</span>, <span class="text-white font-medium">Go</span>, and high-performance systems. Passionate about building robust applications, designing scalable architectures, and delivering high-quality software solutions.
                         </p>
                         <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up delay-400">
-                            <a href="#projects" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-100 transition duration-300 transform hover:scale-105">View My Work</a>
+                            <a href="#projects" class="inline-block bg-cyan-300 text-slate-950 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-cyan-200 transition duration-300">View Projects</a>
                             <a href="Sarthak_Resume__Dec_.pdf" download class="inline-block bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-indigo-600 transition duration-300 transform hover:scale-105">Download Resume</a>
                         </div>
                         <div class="flex justify-center space-x-6 mt-10 animate-fade-in-up delay-400">
@@ -203,7 +661,7 @@
                             Hello! I'm <span class="text-indigo-400 font-semibold">Sarthak Atlasia</span>, a Software Engineer and Full Stack Developer with a passion for building robust, scalable applications and delivering high-quality software solutions.
                         </p>
                         <p class="text-base">
-                            Currently working as a Software Developer at <span class="text-indigo-400 font-semibold">Netweb Technologies</span>, and formerly an Associate Software Engineer at <span class="text-indigo-400 font-semibold">Amdocs</span>. I specialize in designing and validating critical backend systems, implementing RESTful APIs, and automating CI/CD pipelines. My work directly impacts real-time billing systems for major telecom clients like T-Mobile US.
+                            Currently working as a Software Developer at <span class="text-indigo-400 font-semibold">Netweb Technologies India Ltd.</span>, and formerly an Associate Software Engineer at <span class="text-indigo-400 font-semibold">Amdocs</span>. I specialize in designing and validating critical backend systems, implementing RESTful APIs, and automating CI/CD pipelines. My work directly impacts real-time billing systems for major telecom clients like T-Mobile US.
                         </p>
                         <p class="text-base">
                             I thrive in agile environments, leveraging cutting-edge tools like <span class="text-indigo-400">Kubernetes</span>, <span class="text-indigo-400">Apache Kafka</span>, <span class="text-indigo-400">Jenkins</span>, and monitoring platforms like <span class="text-indigo-400">Dynatrace</span> and <span class="text-indigo-400">Grafana</span> to deliver production-ready solutions.
@@ -335,18 +793,57 @@
                 <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-10 rounded-full"></div>
                 
                 <div class="space-y-6">
-                    <!-- Experience 1: Amdocs -->
+                    <!-- Experience 1: Netweb Technologies -->
                     <div class="glass p-8 rounded-xl card-glow transition duration-300">
                         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                             <div>
-                                <h3 class="text-xl font-bold text-slate-100 mb-2">Associate Software Engineer, Amdocs Development Center India LLP</h3>
+                                <p class="console-label text-emerald-300 text-xs mb-2">CURRENT ROLE · SOFTWARE ENGINEERING</p>
+                                <h3 class="text-xl font-bold text-slate-100 mb-2">Software Developer</h3>
+                                <p class="text-cyan-400 font-semibold text-base">Netweb Technologies India Ltd.</p>
+                            </div>
+                            <div class="text-slate-400 mt-2 md:mt-0 md:text-right">
+                                <p class="font-medium text-sm">Feb 2026 - Present</p>
+                                <p class="text-sm">Faridabad, Haryana</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 mt-5 text-slate-300 text-base">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
+                                <span>Develop backend and system-level software using <strong class="text-slate-100">Go</strong> and <strong class="text-slate-100">Python</strong>, focused on server and infrastructure management.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
+                                <span>Design and integrate <strong class="text-slate-100">REST APIs</strong> for managing and interacting with infrastructure components.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
+                                <span>Work extensively on <strong class="text-slate-100">Linux-based storage systems</strong>, including disks, partitions, LVM, filesystems, mounts, and storage configuration.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-cyan-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
+                                <span>Develop software and workflows for <strong class="text-slate-100">storage management, server validation, and infrastructure automation</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
+                                <span>Build and test solutions for <strong class="text-slate-100">high-performance computing and GPU-based server environments</strong>.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience 2: Amdocs -->
+                    <div class="glass p-8 rounded-xl card-glow transition duration-300">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-100 mb-2">Associate Software Engineer</h3>
+                                <p class="text-blue-400 font-semibold text-base">Amdocs Development Center India LLP</p>
                             </div>
                             <div class="text-slate-400 mt-2 md:mt-0 md:text-right">
                                 <p class="font-medium text-sm">June 2024 - Sept 2025</p>
-                                <p class="text-sm">Indore, Madhya Pradesh</p>
+                                <p class="text-sm">Gurugram, Haryana</p>
                             </div>
                         </div>
-                        
+
                         <ul class="space-y-3 mt-5 text-slate-300 text-base">
                             <li class="flex items-start">
                                 <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
@@ -360,7 +857,6 @@
                                 <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
                                 <span>Worked in Agile sprints using JIRA; validated Kafka consumer flows for high-volume telecom billing use cases such as rate plan changes, order flows, and suspend/resume scenarios.</span>
                             </li>
-                            <li class="flex items-start">
                                 <i class="fas fa-chevron-right text-blue-400 mr-3 mt-1 flex-shrink-0 text-sm"></i>
                                 <span>Automated CI/CD pipelines using Jenkins and Python automation; deployed containerized services on Kubernetes and monitored application health using Dynatrace and Grafana.</span>
                             </li>
@@ -370,8 +866,8 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <!-- Experience 2: Sparks Foundation -->
+
+                    <!-- Experience 3: Sparks Foundation -->
                     <div class="glass p-8 rounded-xl card-glow transition duration-300">
                         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                             <div>
@@ -516,10 +1012,11 @@
                     <!-- Project Card 1: TaskVault -->
                     <div class="glass rounded-xl overflow-hidden card-glow transition duration-300 flex flex-col transform hover:-translate-y-2">
                         <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/1e293b/6366f1?text=TaskVault+API" alt="TaskVault Project" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110">
+                            <div class="project-art w-full h-48 bg-gradient-to-br from-indigo-900 to-slate-800 flex items-center justify-center text-indigo-300 text-2xl font-bold" role="img" aria-label="TaskVault API project">TaskVault API</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
+                            <p class="console-label text-emerald-300 text-xs mb-2">STATUS: DEPLOYED · TYPE: BACKEND API</p>
                             <h3 class="text-xl font-bold text-slate-100 mb-2">TaskVault RESTful Task Manager API</h3>
                             <p class="text-slate-300 mb-4 text-sm leading-relaxed">Developed and deployed a secure backend application using Flask, featuring user authentication (JWT) and full CRUD operations for task management. Structured RESTful APIs with a modular architecture; integrated PostgreSQL for data persistence.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -530,20 +1027,18 @@
                                 <span class="bg-indigo-500/20 text-indigo-300 text-xs font-medium px-2.5 py-1 rounded-full border border-indigo-500/30">Render</span>
                             </div>
                             <div class="flex space-x-4 mt-auto pt-4 border-t border-slate-700">
-                                <a href="#" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center transition duration-300 text-sm">
-                                    <i class="fab fa-github mr-2"></i>
-                                    GitHub Repository
-                                </a>
+                                <span class="text-slate-400 text-sm">Repository link available on request</span>
                             </div>
                         </div>
                     </div>
                     <!-- Project Card 2: Dynamic Portfolio Dashboard -->
                     <div class="glass rounded-xl overflow-hidden card-glow transition duration-300 flex flex-col transform hover:-translate-y-2">
                         <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/1e293b/8b5cf6?text=Portfolio+Dashboard" alt="Portfolio Dashboard Project" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110">
+                            <div class="project-art w-full h-48 bg-gradient-to-br from-purple-900 to-slate-800 flex items-center justify-center text-purple-300 text-2xl font-bold text-center px-4" role="img" aria-label="Portfolio dashboard project">Portfolio Dashboard</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
+                            <p class="console-label text-cyan-300 text-xs mb-2">STATUS: BUILT · TYPE: WEB APPLICATION</p>
                             <h3 class="text-xl font-bold text-slate-100 mb-2">Dynamic Portfolio Dashboard</h3>
                             <p class="text-slate-300 mb-4 text-sm leading-relaxed">Built a responsive financial dashboard with real-time portfolio tracking, sector analysis, and performance metrics. Implemented interactive data visualizations for portfolio allocation, returns, and P&L using modern React components with scalable architecture.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -553,20 +1048,18 @@
                                 <span class="bg-cyan-500/20 text-cyan-300 text-xs font-medium px-2.5 py-1 rounded-full border border-cyan-500/30">Tailwind CSS</span>
                             </div>
                             <div class="flex space-x-4 mt-auto pt-4 border-t border-slate-700">
-                                <a href="#" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center transition duration-300 text-sm">
-                                    <i class="fab fa-github mr-2"></i>
-                                    GitHub Repository
-                                </a>
+                                <span class="text-slate-400 text-sm">Repository link available on request</span>
                             </div>
                         </div>
                     </div>
                     <!-- Project Card 3: Personal Portfolio -->
                     <div class="glass rounded-xl overflow-hidden card-glow transition duration-300 flex flex-col transform hover:-translate-y-2">
                         <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/1e293b/10b981?text=Personal+Portfolio" alt="Personal Portfolio Project" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110">
+                            <div class="project-art w-full h-48 bg-gradient-to-br from-emerald-900 to-slate-800 flex items-center justify-center text-emerald-300 text-2xl font-bold text-center px-4" role="img" aria-label="Personal portfolio project">Personal Portfolio</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
+                            <p class="console-label text-emerald-300 text-xs mb-2">STATUS: LIVE · TYPE: PERSONAL SITE</p>
                             <h3 class="text-xl font-bold text-slate-100 mb-2">Personal Portfolio</h3>
                             <p class="text-slate-300 mb-4 text-sm leading-relaxed">Developed a responsive personal portfolio website using React.js, Tailwind CSS, and HTML that showcases web development skills, featuring an interactive UI with About, Skills, and Contact sections powered by Form Spree API integration.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -590,10 +1083,11 @@
                     <!-- Project Card 4: Weather App -->
                     <div class="glass rounded-xl overflow-hidden card-glow transition duration-300 flex flex-col transform hover:-translate-y-2">
                         <div class="relative overflow-hidden group">
-                            <img src="https://placehold.co/600x400/1e293b/3b82f6?text=Weather+App" alt="Weather App Project" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110">
+                            <div class="project-art w-full h-48 bg-gradient-to-br from-blue-900 to-slate-800 flex items-center justify-center text-blue-300 text-2xl font-bold" role="img" aria-label="Weather app project">Weather App</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col">
+                            <p class="console-label text-cyan-300 text-xs mb-2">STATUS: LIVE · TYPE: FRONTEND APP</p>
                             <h3 class="text-xl font-bold text-slate-100 mb-2">Weather App</h3>
                             <p class="text-slate-300 mb-4 text-sm leading-relaxed">Developed a dynamic Weather App using HTML, CSS, and JavaScript to display real-time weather data. Users can search any city and view temperature, humidity, wind speed, and weather conditions, powered by OpenWeatherMap API and responsive across devices.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -637,10 +1131,7 @@
                                 <h3 class="text-lg font-bold text-slate-100 mb-2">McKinsey Forward Program</h3>
                                 <p class="text-blue-400 font-semibold mb-2 text-sm">McKinsey & Company</p>
                                 <p class="text-slate-400 text-sm mb-3">December 2025</p>
-                                <a href="#" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium flex items-center transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    Certificate Link
-                                </a>
+                                <span class="text-slate-400 text-sm">Certificate available on request</span>
                             </div>
                         </div>
                     </div>
@@ -657,10 +1148,7 @@
                                 <h3 class="text-lg font-bold text-slate-100 mb-2">Oracle Certified Multicloud Architect</h3>
                                 <p class="text-orange-400 font-semibold mb-2 text-sm">Oracle</p>
                                 <p class="text-slate-400 text-sm mb-3">August 2025</p>
-                                <a href="#" target="_blank" class="text-orange-400 hover:text-orange-300 text-sm font-medium flex items-center transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    Certificate Link
-                                </a>
+                                <span class="text-slate-400 text-sm">Certificate available on request</span>
                             </div>
                         </div>
                     </div>
@@ -677,10 +1165,7 @@
                                 <h3 class="text-lg font-bold text-slate-100 mb-2">Generative AI</h3>
                                 <p class="text-blue-400 font-semibold mb-2 text-sm">Google Cloud</p>
                                 <p class="text-slate-400 text-sm mb-3">July 2025</p>
-                                <a href="#" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    Certificate Link
-                                </a>
+                                <span class="text-slate-400 text-sm">Certificate available on request</span>
                             </div>
                         </div>
                     </div>
@@ -697,10 +1182,7 @@
                                 <h3 class="text-lg font-bold text-slate-100 mb-2">Amazon ML Summer School</h3>
                                 <p class="text-amber-400 font-semibold mb-2 text-sm">Amazon Web Services</p>
                                 <p class="text-slate-400 text-sm mb-3">October 2023</p>
-                                <a href="#" target="_blank" class="text-amber-400 hover:text-amber-300 text-sm font-medium flex items-center transition duration-300">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    Certificate Link
-                                </a>
+                                <span class="text-slate-400 text-sm">Certificate available on request</span>
                             </div>
                         </div>
                     </div>
@@ -711,6 +1193,15 @@
         <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-24 mx-4 md:mx-auto max-w-5xl my-8 px-6">
             <div class="container mx-auto">
+                <div class="contact-intro mb-12">
+                    <p class="console-label text-fuchsia-400 mb-5">// next project could be yours</p>
+                    <h2 class="contact-title text-4xl md:text-6xl font-bold text-slate-100 mb-2">Have an idea?</h2>
+                    <p class="contact-title-gradient text-4xl md:text-6xl font-bold mb-8">Let's make it real.</p>
+                    <a href="mailto:sarthak.atlasia@gmail.com" class="contact-email inline-flex items-center gap-4 text-xl md:text-3xl font-mono text-slate-100 hover:text-cyan-300 transition duration-300">
+                        sarthak.atlasia@gmail.com
+                        <span class="contact-arrow w-12 h-12 rounded-full border border-fuchsia-400/60 flex items-center justify-center text-fuchsia-300" aria-hidden="true">→</span>
+                    </a>
+                </div>
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-400 mb-3">Let's Connect</h2>
                 <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-center text-slate-300 mb-10 max-w-2xl mx-auto text-base">
@@ -750,7 +1241,18 @@
                     </div>
                 </div>
                 
-                <div class="glass p-8 md:p-10 rounded-xl max-w-2xl mx-auto">
+                <button id="contact-form-toggle" type="button" class="contact-form-toggle inline-flex items-center gap-3 text-cyan-300 border border-cyan-400/40 rounded-lg px-5 py-3 hover:bg-cyan-400/10 transition duration-300" aria-expanded="false" aria-controls="contact-form-panel">
+                    <i class="fas fa-terminal" aria-hidden="true"></i>
+                    Open contact form
+                </button>
+
+                <div id="contact-form-panel" class="contact-form-panel glass p-8 md:p-10 rounded-xl" hidden>
+                    <div class="flex items-center justify-between mb-5">
+                        <p class="console-label text-cyan-300">~/sarthak/contact</p>
+                        <button id="contact-form-close" type="button" class="text-slate-400 hover:text-white p-2" aria-label="Close contact form">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     <!-- Corrected Formspree Integration -->
                     <form action="https://formspree.io/f/xaygnppj" method="POST" class="space-y-5">
                         <div>
@@ -774,6 +1276,7 @@
                             <textarea id="message" name="message" rows="5" class="block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 resize-none text-sm" placeholder="Tell me about your project or opportunity..." required></textarea>
                         </div>
                         <div class="text-center">
+                            <p id="form-status" class="form-status text-sm text-slate-300 mb-3" role="status" aria-live="polite"></p>
                             <button type="submit" class="inline-flex justify-center items-center py-3 px-8 border border-transparent shadow-lg text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105">
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 Send Message
@@ -782,20 +1285,6 @@
                     </form>
                 </div>
                 
-                    <div class="flex justify-center space-x-6 mt-12">
-                    <a href="https://linkedin.com/in/sarthak-atlasia" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:scale-110 transition duration-300" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in text-xl"></i>
-                    </a>
-                    <a href="https://github.com/sarthak2443" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:scale-110 transition duration-300" aria-label="GitHub">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://x.com/Sarthakatlasia" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:scale-110 transition duration-300" aria-label="Twitter">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="mailto:sarthak.atlasia@gmail.com" class="w-12 h-12 glass rounded-full flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:scale-110 transition duration-300" aria-label="Email">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </a>
-                </div>
             </div>
         </section>
     </main>
@@ -818,7 +1307,7 @@
                 </a>
             </div>
             <div class="border-t border-slate-700 pt-6">
-                <p class="text-slate-300 mb-2">&copy; 2025 Sarthak Atlasia. All rights reserved.</p>
+                <p class="text-slate-300 mb-2">&copy; 2026 Sarthak Atlasia. All rights reserved.</p>
                 <p class="text-sm text-slate-500">Built with <span class="text-red-400">♥</span> using Tailwind CSS</p>
             </div>
         </div>
@@ -830,6 +1319,37 @@
         // Animated Stars Background
         const canvas = document.getElementById('stars-canvas');
         const ctx = canvas.getContext('2d');
+        const siteHeader = document.querySelector('.site-header');
+        let lastScrollPosition = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.scrollY;
+            const scrollingDown = currentScrollPosition > lastScrollPosition;
+            siteHeader.classList.toggle('is-hidden', scrollingDown && currentScrollPosition > 80);
+            if (currentScrollPosition <= 20) {
+                siteHeader.classList.remove('is-hidden');
+            }
+            lastScrollPosition = Math.max(currentScrollPosition, 0);
+        }, { passive: true });
+
+        window.addEventListener('pointermove', (event) => {
+            if (event.clientY <= 8) {
+                siteHeader.classList.remove('is-hidden');
+            }
+        }, { passive: true });
+
+        const bootScreen = document.getElementById('boot-screen');
+        const finishBoot = () => {
+            if (!bootScreen) return;
+            bootScreen.classList.add('is-complete');
+            document.body.classList.remove('booting');
+        };
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            finishBoot();
+        } else {
+            window.setTimeout(finishBoot, 2600);
+        }
         
         // Set canvas size
         function resizeCanvas() {
@@ -841,7 +1361,7 @@
         
         // Create stars
         const stars = [];
-        const starCount = 200;
+        const starCount = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 80;
         
         class Star {
             constructor() {
@@ -923,6 +1443,23 @@
             });
         });
 
+        // Reveal sections as they enter the viewport instead of animating the whole page at once.
+        const revealTargets = document.querySelectorAll('main > section, footer, .contact-intro, .glass');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            revealTargets.forEach(target => target.classList.add('is-visible'));
+        } else if ('IntersectionObserver' in window) {
+            revealTargets.forEach(target => target.classList.add('scroll-reveal'));
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+            revealTargets.forEach(target => revealObserver.observe(target));
+        }
+
         // Mobile menu toggle functionality
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
@@ -931,6 +1468,9 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
+            const isOpen = mobileMenu.classList.contains('flex');
+            mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+            document.body.classList.toggle('overflow-hidden', isOpen);
         });
 
         closeMobileMenuButton.addEventListener('click', () => {
@@ -940,7 +1480,41 @@
         function closeMobileMenu() {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('flex');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('overflow-hidden');
         }
+
+        const contactFormToggle = document.getElementById('contact-form-toggle');
+        const contactFormClose = document.getElementById('contact-form-close');
+        const contactFormPanel = document.getElementById('contact-form-panel');
+
+        function setContactFormOpen(isOpen) {
+            contactFormPanel.hidden = !isOpen;
+            contactFormToggle.setAttribute('aria-expanded', String(isOpen));
+            contactFormToggle.innerHTML = isOpen
+                ? '<i class="fas fa-times" aria-hidden="true"></i> Close contact form'
+                : '<i class="fas fa-terminal" aria-hidden="true"></i> Open contact form';
+            if (isOpen) {
+                contactFormClose.focus();
+            } else {
+                contactFormToggle.focus();
+            }
+        }
+
+        contactFormToggle.addEventListener('click', () => {
+            setContactFormOpen(contactFormPanel.hidden);
+        });
+        contactFormClose.addEventListener('click', () => setContactFormOpen(false));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && mobileMenu.classList.contains('flex')) {
+                closeMobileMenu();
+                mobileMenuButton.focus();
+            }
+            if (event.key === 'Escape' && !contactFormPanel.hidden) {
+                setContactFormOpen(false);
+            }
+        });
 
         // Form submission logic for Formspree
         document.querySelector('#contact form').addEventListener('submit', async function(e) {
@@ -948,6 +1522,7 @@
             const form = e.target;
             const formData = new FormData(form);
             const submitButton = form.querySelector('button[type="submit"]');
+            const formStatus = document.getElementById('form-status');
             const originalHTML = submitButton.innerHTML;
 
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
@@ -963,6 +1538,8 @@
                 });
 
                 if (response.ok) {
+                    formStatus.textContent = 'Thanks for reaching out! Your message was sent successfully.';
+                    formStatus.className = 'form-status text-sm text-emerald-300 mb-3';
                     submitButton.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
                     submitButton.classList.remove('from-blue-500', 'to-cyan-500', 'hover:from-blue-600', 'hover:to-cyan-600');
                     submitButton.classList.add('from-green-500', 'to-emerald-500');
@@ -974,12 +1551,8 @@
                         submitButton.disabled = false;
                     }, 3000);
                 } else {
-                    const data = await response.json();
-                    if (data.errors) {
-                        alert('Error: ' + data.errors.map(error => error.message).join(", "));
-                    } else {
-                        alert('Oops! There was a problem sending your message. Please try again.');
-                    }
+                    formStatus.textContent = 'We could not send your message. Please check the fields and try again.';
+                    formStatus.className = 'form-status text-sm text-rose-300 mb-3';
                     submitButton.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Try Again';
                     submitButton.classList.remove('from-blue-500', 'to-cyan-500');
                     submitButton.classList.add('from-red-500', 'to-rose-500');
@@ -992,7 +1565,8 @@
                 }
             } catch (error) {
                 console.error('Network error or unexpected issue:', error);
-                alert('Oops! A network error occurred. Please check your internet connection and try again.');
+                formStatus.textContent = 'A network error prevented submission. Please check your connection and try again.';
+                formStatus.className = 'form-status text-sm text-rose-300 mb-3';
                 submitButton.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Try Again';
                 submitButton.classList.remove('from-blue-500', 'to-cyan-500');
                 submitButton.classList.add('from-red-500', 'to-rose-500');
@@ -1007,6 +1581,3 @@
     </script>
 </body>
 </html>
-
-
-
